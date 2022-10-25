@@ -1,15 +1,4 @@
 
-// const btn=document.querySelector('.btn')
-// btn.addEventListener('mouseover',(e)=>{
-//     e.preventDefault()
-//     document.querySelector('#my-form').style.background='yellow'
-// })
-
-// const btn=document.querySelector('.btn')
-// btn.addEventListener('mouseout',(e)=>{
-//     e.preventDefault()
-//     document.querySelector('#my-form').style.background='yellow'
-// })
 
 const myform=document.querySelector('#my-form')
 const Inputname=document.querySelector('#name')
@@ -25,14 +14,9 @@ function onSubmit(e)
 {
     e.preventDefault()
     
-        
-        // localStorage.setItem('name',Inputname.value )
-        // localStorage.setItem('email',emailInput.value)
         const name=e.target.name.value;
         const email=e.target.email.value;
-        // localStorage.setItem('name',name);
-        // localStorage.setItem('email',email);
-
+    
         const obj={
             name,
             email,
@@ -47,13 +31,52 @@ function onSubmit(e)
         }
         else{
             const li=document.createElement('li')
-            li.appendChild(document.createTextNode(`${Inputname.value} : ${emailInput.value}`))
+            //add delete and edit 
+            const del=document.createElement('button')
+            const edt=document.createElement('button')
+             del.appendChild(document.createTextNode('delete'))
+             del.className='delete'
+             edt.appendChild(document.createTextNode('EDIT'))
+           
+                
+
+            // li.appendChild(document.createTextNode(`${Inputname.value} ${emailInput.value}`))
+
+            li.appendChild(document.createTextNode(`${obj.name}`))
+            li.appendChild(document.createTextNode(" "))
+            li.appendChild(document.createTextNode(`${obj.email}`))
+            li.appendChild(del)
+            li.appendChild(edt)
             userList.appendChild(li)
+
 
             // clearfiled
             Inputname.value='';
             emailInput.value='';
         }
-}
+
+      
+    }
+
+  userList.addEventListener('click',remove)
+
+  function remove(e)
+  {
+    e.preventDefault()
+     if(e.target.classList.contains('delete'))
+     {
+        li=e.target.parentElement
+        let key=li.childNodes[2].textContent
+        // key=JSON.stringify(key)
+        // console.log(key)
+        localStorage.removeItem(key)
+        userList.removeChild(li)
+     }
+  }
+   
+
+   
+    
+   
 
 
