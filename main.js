@@ -30,17 +30,15 @@ function onSubmit(e)
         // localStorage.setItem('email',emailInput.value)
         const name=e.target.name.value;
         const email=e.target.email.value;
-        localStorage.setItem('name',name);
-        localStorage.setItem('email',email);
+        // localStorage.setItem('name',name);
+        // localStorage.setItem('email',email);
 
         const obj={
             name,
             email,
         }
-        localStorage.setItem('userDetail',JSON.stringify(obj))
+        localStorage.setItem(`${obj.email}`,JSON.stringify(obj))
         
-
-       
         if(Inputname.value==="" || emailInput.value==="")
         {
             msg.classList.add('error')
@@ -56,8 +54,6 @@ function onSubmit(e)
             Inputname.value='';
             emailInput.value='';
         }
-        
-    
 }
 
 
